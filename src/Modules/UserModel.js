@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const userSchema = new mongoose.Schema({
-    title: {
+    tittle: {
         type: String,
         trim: true,
         required: "title is required",
@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
         required: "name is required",
     },
     phone: {
-        type: String,
+        type: Number,
         trim: true,
         required: "phone number is required",
         unique: true
@@ -41,7 +41,7 @@ const userSchema = new mongoose.Schema({
             trim: true,
         },
         pincode: {
-            type: String,
+            type: Number,
             trim: true,
         }
     }

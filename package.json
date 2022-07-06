@@ -4,7 +4,8 @@
   "description": "- Create a group database `groupXDatabase`. You can clean the db you previously used and resue that.\r - This time each group should have a *single git branch*. Coordinate amongst yourselves by ensuring every next person pulls the code last pushed by a team mate. You branch will be checked as part of the demo. Branch name should follow the naming convention `project/booksManagementGroupX`\r - Follow the naming conventions exactly as instructed.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js"
   },
   "repository": {
     "type": "git",
@@ -17,14 +18,12 @@
   },
   "homepage": "https://github.com/21pintoo-singh/project-booksManagementGroup46#readme",
   "dependencies": {
-    "body-parser": "^1.20.0",
     "debug": "^4.3.4",
     "express": "^4.18.1",
-    "json-web-token": "^3.2.0",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.3",
     "mongoose": "^6.4.3",
-    "node": "^18.4.0",
     "nodemon": "^2.0.19"
   }
 }

@@ -4,10 +4,10 @@ const UserModel = require("../Modules/UserModel");
 const registerUser = async (req, res) => {
       try {
           const data = req.body;
-
-        let userData = { title, name, phone, email, password, address }
-        let user = await UserModel.create(userData)
-
+      //     console.log(data)
+      //   let userData = { tittle,name, phone, email, password, address }
+        let user = await UserModel.create(data)
+      //   console.log(user)
         return res.status(201).send({ status: true, message: "User created sucessfully", data: user })
 
       }
@@ -16,5 +16,7 @@ const registerUser = async (req, res) => {
           return res.status(500).send({ status: false, message: error.message })
       }
   }
+
+  
   
   module.exports.registerUser=registerUser
