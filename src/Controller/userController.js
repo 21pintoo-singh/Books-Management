@@ -1,4 +1,4 @@
-const UserModel = require("../modules/UserModel");
+const UserModel = require("../Modules/UserModel");
 
 //-----------------------imort validation function from validation.js------------------
 const { isValidRequestBody, isEmpty, isValidPhone, isValidEmail, isValidPassword } = require("../utility/validation.js")
@@ -19,15 +19,18 @@ const registerUser = async (req, res) => {
 
       // validation for name
         if (isEmpty(name)) return res.status(400).send({ status: false, message: "User name is required" })
+        
         if (!name.match(/^[#.a-zA-Z\s,-]+$/)) return res.status(400).send({ status: false, message: "User name is Invalid !" })
 
       // validation for phonenumber
         if (isEmpty(phone)) return res.status(400).send({ status: false, message: "Phone Number is required" })
+        
         if (!isValidPhone(phone)) return res.status(400).send({ status: false, message: `${phone} is not a valid phone number` })
 
 
       // validation for email
         if (isEmpty(email)) return res.status(400).send({ status: false, message: "Email is required" })
+
         if (!isValidEmail(email)) return res.status(400).send({ status: false, message: `${email} is not a valid email` })
 
 

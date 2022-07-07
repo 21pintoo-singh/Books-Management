@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
         required: "name is required",
     },
     phone: {
-        type: Number,
+        type:Number,
         trim: true,
         required: "phone number is required",
         unique: true
@@ -41,7 +41,7 @@ const userSchema = new mongoose.Schema({
             trim: true,
         },
         pincode: {
-            type: Number,
+            type:String,
             trim: true,
         }
     }
