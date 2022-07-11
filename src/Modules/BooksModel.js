@@ -1,38 +1,39 @@
 const mongoose = require('mongoose')
 const ObjectId = mongoose.Schema.Types.ObjectId
 
+// ----------------create a bookModel using schema-------------------------------
 const bookSchema = new mongoose.Schema({
     title: {
         type: String,
         trim:true,
-        required: 'Title must be required',
+        required: 'Title must be Present',
         unique: true
     },
     excerpt: {
         type: String,
         trim:true,
-        required: 'Excerpt must be required'
+        required: 'Excerpt must be Present'
     },
     userId: {
         type: ObjectId,
         ref: 'User',
-        required: 'UserId must be required'
+        required: 'UserId must be Present'
     },
     ISBN: {
         type: String,
         trim:true,
-        required: 'ISBN must be required',
+        required: 'ISBN must be Present',
         unique: true
     },
     category: {
         type: String,
         trim:true,
-        required: 'Category must be required',
+        required: 'Category must be Present',
     },
     subcategory: {
         type: [String],
         trim:true,
-        required: 'Subcategory must be required',
+        required: 'Subcategory must be Present',
     },
     reviews: {
         type: Number,
@@ -46,9 +47,9 @@ const bookSchema = new mongoose.Schema({
         default: false
     },
     releasedAt: {
-        type: String,
+        type: Date,
         trim:true,
-        required:'ReleasedAt must be required'
+        required:'ReleasedAt must be Present'
     },
 }, {
     timestamps: true

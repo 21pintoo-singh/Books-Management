@@ -1,29 +1,35 @@
 const mongoose = require('mongoose')
 
+// -------------------------Create UserModel--------------------------------
 const userSchema = new mongoose.Schema({
-    tittle: {
+    title: {
         type: String,
         trim: true,
         required: "title is required",
         enum: ['Mr', 'Mrs', 'Miss']
     },
+
+
     name: {
         type: String,
         trim: true,
         required: "name is required",
     },
+
     phone: {
-        type:Number,
+        type:String,
         trim: true,
         required: "phone number is required",
         unique: true
     },
+
     email: {
         type: String,
         trim: true,
         required: "email is required",
         unique: true
     },
+
     password: {
         type: String,
         trim: true,
@@ -31,6 +37,7 @@ const userSchema = new mongoose.Schema({
         minlength: 8,
         maxlength: 15
     },
+
     address: {
         street: {
             type: String,
@@ -49,4 +56,5 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 })
 
+// export user
 module.exports = mongoose.model('User', userSchema)

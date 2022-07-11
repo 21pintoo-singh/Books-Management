@@ -1,6 +1,8 @@
 const mongoose = require('mongoose')
 const ObjectId = mongoose.Schema.Types.ObjectId
 
+
+// -------------create a review model------------------------
 const reviewSchema = new mongoose.Schema({
     bookId: {
         type: ObjectId,
@@ -10,7 +12,7 @@ const reviewSchema = new mongoose.Schema({
     reviewedBy: {
         type: String,
         trim:true,
-        required: "reviewed by is required",
+        required: "reviewed is required",
         default: "Guest",
         value: "Number",
     },
@@ -34,4 +36,5 @@ const reviewSchema = new mongoose.Schema({
     }
 
 })
+
 module.exports=mongoose.model('Review',reviewSchema)
