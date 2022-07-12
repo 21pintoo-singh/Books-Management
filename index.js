@@ -8,10 +8,6 @@ const port = 3002;
 
 app.use(bodyParser.json());
 
-// app.use(bodyParser.urlencoded({
-//   extended: true
-// }));
-
 // ----------------------mongoose method for connection btwn atlast to  cluster
 mongoose
   .connect(

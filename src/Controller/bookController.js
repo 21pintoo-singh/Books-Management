@@ -24,7 +24,7 @@ const createBook = async (req, res) => {
 
 
         //releasedAt time details
-        if (isEmpty(releasedAt)) {
+        if (!isEmpty(releasedAt)) {
             releasedAt = moment(releasedAt).format("YYYY-MM-DD")
         } else {
 
@@ -114,7 +114,9 @@ const createBook = async (req, res) => {
 
         //Db call for Book creation
         const createBook = await BooksModel.create({
-            title, excerpt, userId, ISBN, category, subcategory, releasedAt: moment(releasedAt).format("YYYY-MM-DD"),
+            title, excerpt, userId, ISBN, category, subcategory, releasedAt:
+                moment(releasedAt)
+                    .format("YYYY-MM-DD"),
         })
 
         return res.status(201).send({
@@ -309,50 +311,27 @@ const bookUpdate = async (req, res) => {
             message: "Book is already Deleted"
         })
 
-              // if title is empty
-              if (isEmpty(title)) return res.status(400).send({
-                status: false,
-                message: "title required"
-            })
-    
-            // if title is already exists pls provite other title
-            if (!isEmpty(title)) {
-                let checktitle = await BooksModel.findOne({
-                    title: title
-                }).catch(er => null)
-    
-                if (checktitle) {
-                    return res.status(400).send({
-                        status: false,
-                        message: "Title is already exits plz enter a new title"
-                    })
-                } else {
-                    validBook.title = title
-                }
+        // if title is already exists pls provite other title
+        if (!isEmpty(title)) {
+            let checktitle = await BooksModel.findOne({
+                title: title
+            }).catch(er => null)
+
+            if (checktitle) {
+                return res.status(400).send({
+                    status: false,
+                    message: "Title is already exits plz enter a new title"
+                })
+            } else {
+                validBook.title = title
             }
-    
-        // if excerpt is empty
-        if (isEmpty(excerpt)) return res.status(400).send({
-            status: false,
-            message: "excerpt required"
-        })
+        }
+
 
         // if excerpt is not empty
         if (!isEmpty(excerpt)) {
             validBook.excerpt = excerpt;
         }
-
-
-
-
-
-
-            // 
-            // if (isEmpty(releasedAt)) return res.status(400).send({
-            //     status: false,
-            //     message: "releasedAt required"
-            // })
-    
 
 
         if (!isEmpty(releasedAt)) {
@@ -364,32 +343,9 @@ const bookUpdate = async (req, res) => {
                 status: false,
                 message: "Invalid Date"
             })
-             validBook.releasedAt = moment(releasedAt).format("YYYY-MM-DD");
+            //  validBook.releasedAt = moment(releasedAt).format("YYYY-MM-DD");
+            validBook.releasedAt = releasedAt;
         }
-
-        // if (isValidDate(releasedAt)) {
-        //     if (!Object.prototype.hasOwnProperty.call(updateData,'$set'))
-        //         updateData[ '$set' ] = {}
-            
-        //     updateData[ '$set' ][ 'releasedAt' ] = moment(releasedAt).toISOString()
-        // }
-
-
-
-
-
-
-
-
-
-
-
-        
-        // if isbn empty
-        if (isEmpty(ISBN)) return res.status(400).send({
-            status: false,
-            message: "ISBN empty"
-        })
 
         // if ISBN is Already exit pls provite new isbn
         if (!isEmpty(ISBN)) {
@@ -406,6 +362,7 @@ const bookUpdate = async (req, res) => {
             }
         }
         await validBook.save();
+
         res.status(200).send({
             status: true,
             message: "Update succesful",

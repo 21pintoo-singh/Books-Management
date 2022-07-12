@@ -8,12 +8,6 @@ const review = require('../Controller/reviewController')
 // auth require
 const { authenticate, bookAuthorization, userAuthorization } = require('../middleware/auth')
 
-// // if empty path param send
-// router.post("/", (req, res) => {
-//     res.send('Okk')
-// })
-
-
 
 // ------------------------User Creation And login api call-----------------------------
 router.post("/register", user.registerUser)

@@ -1,7 +1,7 @@
 const reviewsModel = require('../Modules/ReviewModel')
 const booksModel = require('../Modules/BooksModel')
 const validation = require('../utility/validation')
-const {isValidObjectId} = require("../utility/validation")
+const { isValidObjectId } = require("../utility/validation")
 
 
 //=======================CREATE REVIEW APiS============================
@@ -25,14 +25,14 @@ const create = async (req, res) => {
         })
 
         // Destructure
-        let {reviewedBy, rating, review} = revData
+        let { reviewedBy, rating, review } = revData
 
         // VALIDATION
         if (validation.isEmpty(reviewedBy)) {
             reviewedBy = "Guest"
         }
 
-      //   if rating is empty in body
+        //   if rating is empty in body
         if (validation.isEmpty(rating)) return res.status(400).send({
             status: false,
             message: 'Rating is required!'
@@ -44,13 +44,13 @@ const create = async (req, res) => {
             message: "rating must be number only"
         })
 
-      //   rating must be 1 to 5
+        //   rating must be 1 to 5
         if (rating < 1 || rating > 5) return res.status(400).send({
             status: false,
             message: 'Rating must be in 1 to 5!'
         })
 
-      //   if review is empty in body
+        //   if review is empty in body
         if (Object.keys(revData).indexOf("review") !== -1) {
             if (validation.isEmpty(review)) return res.status(400).send({
                 status: false,
@@ -338,4 +338,4 @@ const bookWithReviewList = async (bookId) => {
 
 
 
-module.exports = {create, deleted, update}
+module.exports = { create, deleted, update }

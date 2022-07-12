@@ -23,7 +23,7 @@ let isValidPhone = function (number) {
 
 // regex use for ISBN validation
 let isValidISBN = function (ISBN) {
-    let ISBNRegex =/(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)/
+    let ISBNRegex = /(?=(?:\D*\d){10}(?:(?:\D*\d){3})?$)/
     return ISBNRegex.test(ISBN);
 }
 
@@ -40,21 +40,19 @@ let isValidPassword = function (password) {
 }
 
 // regex use dateformat validation
-let isValidDateFormat = function (date) {
-    //  let dateFormatRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
-    let dateFormatRegex =/^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/
-    return dateFormatRegex.test(date)
-}
 
 let isValidDate = function (date) {
     return moment(date).isValid()
 }
 
+let isValidDateFormat = function (date) {
+    let dateFormatRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
+    return dateFormatRegex.test(date)
+}
+
 let isValidObjectId = function (ObjectId) {
     return mongoose.isValidObjectId(ObjectId)
 }
-
-
 
 
 module.exports = {
