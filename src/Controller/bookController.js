@@ -33,6 +33,9 @@ const createBook = async (req, res) => {
                 status: false,
                 message: "Date must be in the format YYYY-MM-DD"
             })
+            
+             
+
 
             // date type validation
             if (!isValidDate(releasedAt)) return res.status(400).send({
@@ -343,8 +346,8 @@ const bookUpdate = async (req, res) => {
                 status: false,
                 message: "Invalid Date"
             })
-            //  validBook.releasedAt = moment(releasedAt).format("YYYY-MM-DD");
-            validBook.releasedAt = releasedAt;
+          validBook.releasedAt = moment(releasedAt).format("YYYY-MM-DD");
+            // validBook.releasedAt = releasedAt;
         }
 
         // if ISBN is Already exit pls provite new isbn
@@ -361,6 +364,8 @@ const bookUpdate = async (req, res) => {
                 validBook.ISBN = ISBN
             }
         }
+        
+        // db call
         await validBook.save();
 
         res.status(200).send({

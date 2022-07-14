@@ -40,14 +40,14 @@ let isValidPassword = function (password) {
 }
 
 // regex use dateformat validation
+let isValidDateFormat = function (date) {
+    // let dateFormatRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
+    let dateFormatRegex =/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/
+    return dateFormatRegex.test(date)
+}
 
 let isValidDate = function (date) {
     return moment(date).isValid()
-}
-
-let isValidDateFormat = function (date) {
-    let dateFormatRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
-    return dateFormatRegex.test(date)
 }
 
 let isValidObjectId = function (ObjectId) {
