@@ -24,7 +24,7 @@ const createBook = async (req, res) => {
 
 
         //releasedAt time details
-        if (!isEmpty(releasedAt)) {
+        if (isEmpty(releasedAt)) {
             releasedAt = moment(releasedAt).format("YYYY-MM-DD")
         } else {
 
@@ -34,9 +34,6 @@ const createBook = async (req, res) => {
                 message: "Date must be in the format YYYY-MM-DD"
             })
             
-             
-
-
             // date type validation
             if (!isValidDate(releasedAt)) return res.status(400).send({
                 status: false,

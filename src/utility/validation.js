@@ -40,11 +40,21 @@ let isValidPassword = function (password) {
 }
 
 // regex use dateformat validation
-let isValidDateFormat = function (date) {
-    // let dateFormatRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
-    let dateFormatRegex =/^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/
-    return dateFormatRegex.test(date)
+// let isValidDateFormat = function (date) {
+//     // let dateFormatRegex = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/
+
+//     let dateFormatRegex = /^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/
+
+//     // /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/
+//     return dateFormatRegex.test(date)
+// }
+
+const isValidDateFormat = (date) => {
+    if (/^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/.test(date))
+        return true
 }
+
+
 
 let isValidDate = function (date) {
     return moment(date).isValid()
