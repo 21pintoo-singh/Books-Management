@@ -329,20 +329,6 @@ const bookUpdate = async (req, res) => {
         }
 
 
-        // if (!isEmpty(releasedAt)) {
-        //     if (!isValidDateFormat(releasedAt)) return res.status(400).send({
-        //         status: false,
-        //         message: "Date must be in the format YYYY-MM-DD"
-        //     })
-        //     if (!isValidDate(releasedAt)) return res.status(400).send({
-        //         status: false,
-        //         message: "Invalid Date"
-        //     })
-        //   validBook.releasedAt = moment(releasedAt).format("YYYY-MM-DD");
-            
-        // }
-
-
         //releasedAt if empty 
         if(isEmpty(releasedAt)){
             return res.status(400).send({status:false,message: "releasedAt is empty pls enter data"})
