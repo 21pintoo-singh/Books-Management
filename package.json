@@ -18,12 +18,14 @@
   },
   "homepage": "https://github.com/21pintoo-singh/project-booksManagementGroup46#readme",
   "dependencies": {
+    "aws-sdk": "^2.1176.0",
     "debug": "^4.3.4",
     "express": "^4.18.1",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "mongoose": "^6.4.3",
+    "multer": "^1.4.5-lts.1",
     "nodemon": "^2.0.19"
   }
 }

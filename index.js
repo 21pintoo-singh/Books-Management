@@ -4,6 +4,8 @@ const bodyParser = require("body-parser");
 const route = require("./src/routes/route.js");
 const app = express();
 const port = 3002;
+const multer = require("multer");
+app.use(multer().any())
 
 
 app.use(bodyParser.json());

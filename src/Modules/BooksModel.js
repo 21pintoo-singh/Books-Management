@@ -9,6 +9,7 @@ const bookSchema = new mongoose.Schema({
         required: 'Title must be Present',
         unique: true
     },
+    
     excerpt: {
         type: String,
         trim:true,
@@ -50,6 +51,7 @@ const bookSchema = new mongoose.Schema({
         type:Date,
         required:'ReleasedAt must be Present'
     },
+    bookCover:String,
 }, {
     timestamps: true
 })

@@ -98,7 +98,7 @@ const registerUser = async (req, res) => {
     let user = await UserModel.create(userData)
 
 
-    // if handler work properly
+    // new user created
     return res.status(201).send({ status: true, message: "User created sucessfully", data: user })
   }
 

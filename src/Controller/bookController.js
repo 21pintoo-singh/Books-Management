@@ -1,11 +1,12 @@
 const BooksModel = require("../Modules/BooksModel");
 const reviewsModel = require("../Modules/ReviewModel");
-
+const {uploadFile}=require("../AWS/AWS-s3");
 const moment = require('moment')
+
 
 //destructure of validation.js
 const { isValidRequestBody, isEmpty, isValidObjectId, isValidDate, isValidDateFormat,
-    isValidISBN } = require("../utility/validation")
+    isValidISBN } = require("../utility/validation");
 
 
 //==========================API TO CREATE============================================
@@ -107,18 +108,23 @@ const createBook = async (req, res) => {
             message: "ISBN already exist"
         })
 
-        //Db call for Book creation
-        const createBook = await BooksModel.create({
-            title, excerpt, userId, ISBN, category, subcategory, releasedAt:
-                moment(releasedAt)
-                    .format("YYYY-MM-DD"),
-        })
-
+          // AWS s3 added In  create Book
+          let files = req.files
+           if (files && files.length > 0) {
+              let bookCover = await uploadFile(files[0])
+              data.bookCover = bookCover
+           }     
+      
+        
+         //Db call for Book creation
+        const createBook = await BooksModel.create(data)
+        
         return res.status(201).send({
             status: true,
             message: "Book created successfully",
             data: createBook
         })
+       
 
     } catch (error) {
         return res.status(500).send({
