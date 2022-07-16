@@ -23,23 +23,18 @@ const createBook = async (req, res) => {
         let { title, ISBN, releasedAt, category, userId, subcategory, excerpt } = data;
 
 
-        //releasedAt time details
-        if (isEmpty(releasedAt)) {
-            releasedAt = moment(releasedAt).format("YYYY-MM-DD")
-        } else {
-
-            // for date format validation
-            if (!isValidDateFormat(releasedAt)) return res.status(400).send({
+        //releasedAt if empty 
+        if(isEmpty(releasedAt)){
+            return res.status(400).send({status:false,message: "releasedAt is empty pls enter data"})
+        
+        }
+        // for date format validation
+        if (!isEmpty(releasedAt)) {
+              if (!isValidDateFormat(releasedAt)) return res.status(400).send({
                 status: false,
                 message: "Date must be in the format YYYY-MM-DD"
             })
-            
-            // date type validation
-            if (!isValidDate(releasedAt)) return res.status(400).send({
-                status: false,
-                message: "Invalid Date"
-            })
-
+             releasedAt = moment(releasedAt)
         }
 
         //if excerpt empty
@@ -334,18 +329,35 @@ const bookUpdate = async (req, res) => {
         }
 
 
+        // if (!isEmpty(releasedAt)) {
+        //     if (!isValidDateFormat(releasedAt)) return res.status(400).send({
+        //         status: false,
+        //         message: "Date must be in the format YYYY-MM-DD"
+        //     })
+        //     if (!isValidDate(releasedAt)) return res.status(400).send({
+        //         status: false,
+        //         message: "Invalid Date"
+        //     })
+        //   validBook.releasedAt = moment(releasedAt).format("YYYY-MM-DD");
+            
+        // }
+
+
+        //releasedAt if empty 
+        if(isEmpty(releasedAt)){
+            return res.status(400).send({status:false,message: "releasedAt is empty pls enter data"})
+        
+        }
+        // for date format validation
         if (!isEmpty(releasedAt)) {
-            if (!isValidDateFormat(releasedAt)) return res.status(400).send({
+              if (!isValidDateFormat(releasedAt)) return res.status(400).send({
                 status: false,
                 message: "Date must be in the format YYYY-MM-DD"
             })
-            if (!isValidDate(releasedAt)) return res.status(400).send({
-                status: false,
-                message: "Invalid Date"
-            })
-          validBook.releasedAt = moment(releasedAt).format("YYYY-MM-DD");
-            // validBook.releasedAt = releasedAt;
+             releasedAt = moment(releasedAt)
         }
+
+
 
         // if ISBN is Already exit pls provite new isbn
         if (!isEmpty(ISBN)) {
